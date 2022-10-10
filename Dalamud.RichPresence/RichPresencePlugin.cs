@@ -254,17 +254,17 @@ namespace Dalamud.RichPresence
                 var richPresenceSmallImageKey = DEFAULT_SMALL_IMAGE_KEY;
                 var richPresenceSmallImageText = LocalizationManager.Localize("DalamudRichPresenceOnline", LocalizationLanguage.Client);
 
-                if (territoryId != 0)
-                {
-                    // Read territory data from generated sheet
-                    var territory = this.Territories.First(row => row.RowId == territoryId);
-                    territoryName = territory.PlaceName.Value?.Name ?? LocalizationManager.Localize("DalamudRichPresenceUnknown", LocalizationLanguage.Client);
-                    territoryRegion = territory.PlaceNameRegion.Value?.Name ?? LocalizationManager.Localize("DalamudRichPresenceUnknown", LocalizationLanguage.Client);
+                // if (territoryId != 0)
+                // {
+                //     // Read territory data from generated sheet
+                //     var territory = this.Territories.First(row => row.RowId == territoryId);
+                //     territoryName = territory.PlaceName.Value?.Name ?? LocalizationManager.Localize("DalamudRichPresenceUnknown", LocalizationLanguage.Client);
+                //     territoryRegion = territory.PlaceNameRegion.Value?.Name ?? LocalizationManager.Localize("DalamudRichPresenceUnknown", LocalizationLanguage.Client);
 
-                    // Set large image to territory
-                    richPresenceLargeImageText = territoryName;
-                    richPresenceLargeImageKey = $"li_{territory.LoadingImage}";
-                }
+                //     // Set large image to territory
+                //     richPresenceLargeImageText = territoryName;
+                //     richPresenceLargeImageKey = $"li_{territory.LoadingImage}";
+                // }
 
                 // Show character name if configured
                 if (RichPresenceConfig.ShowName)
@@ -396,6 +396,7 @@ namespace Dalamud.RichPresence
                     richPresence.Assets.SmallImageKey = "away";
                 }
 
+                //PluginLog.LogInformation("[abyssal-extension] Calling SetPresence");
                 // Request new presence to be set
                 DiscordPresenceManager.SetPresence(richPresence);
             }

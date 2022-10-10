@@ -13,7 +13,7 @@
         <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     </PropertyGroup>
     <PropertyGroup Label="Documentation">
-        <DocumentationFile/>
+        <DocumentationFile />
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
     <PropertyGroup Label="Build">
@@ -30,14 +30,14 @@
         <DebugType>pdbonly</DebugType>
         <Optimize>true</Optimize>
     </PropertyGroup>
-    
+
     <ItemGroup>
-        <PackageReference Include="DalamudPackager" Version="2.1.8"/>
-        <PackageReference GeneratePathProperty="true" Include="DiscordRichPresence" Version="1.0.175"/>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
-		<PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0"/>
-		<PackageReference Include="NCalcSync" Version="2.0.0"/>
-		<PackageReference Include="XivCommon" Version="4.0.0-alpha.2"/>
+        <PackageReference Include="DalamudPackager" Version="2.1.8" />
+        <PackageReference GeneratePathProperty="true" Include="DiscordRichPresence" Version="1.0.175" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
+        <PackageReference Include="NCalcSync" Version="2.0.0" />
+        <PackageReference Include="XivCommon" Version="4.0.0-alpha.2" />
         <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.333">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -45,7 +45,8 @@
     </ItemGroup>
 
     <PropertyGroup>
-        <DalamudLibPath>$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
+        <!-- <DalamudLibPath>$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath> -->
+        <DalamudLibPath>/Users/jackson/Library/Application Support/XIV on Mac/dalamud/Hooks/dev/</DalamudLibPath>
     </PropertyGroup>
 
     <ItemGroup>
@@ -80,7 +81,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Remove="Resources/loc/*.json"/>
+        <Content Remove="Resources/loc/*.json" />
     </ItemGroup>
 
     <ItemGroup>

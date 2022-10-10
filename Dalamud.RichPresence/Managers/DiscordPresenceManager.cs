@@ -2,6 +2,8 @@
 
 using DiscordRPC;
 using DiscordRPC.Logging;
+using DiscordRPC.Message;
+using Dalamud.Logging;
 
 namespace Dalamud.RichPresence.Managers
 {
@@ -22,20 +24,29 @@ namespace Dalamud.RichPresence.Managers
                 // Create new RPC client
                 RpcClient = new DiscordRpcClient(DISCORD_CLIENT_ID);
 
+                PluginLog.LogInformation("Creating RPC client.");
+
                 // Skip identical presences
                 RpcClient.SkipIdenticalPresence = true;
 
                 // Set logger
                 RpcClient.Logger = new ConsoleLogger { Level = LogLevel.Warning };
 
+                RpcClient.OnError += (sender, e) => { PluginLog.LogInformation("RPC fail: " + e.Message); };
+                RpcClient.OnConnectionFailed += (sender, e) => { PluginLog.LogInformation("RPC connection failed on pipe " + e.FailedPipe + " - " + e.Type.ToString()); };
+                RpcClient.OnReady += (sender, e) => { PluginLog.LogInformation("RPC ready."); };
                 // Subscribe to events
-                RpcClient.OnPresenceUpdate += (sender, e) => { Console.WriteLine("Received Update! {0}", e.Presence); };
+                RpcClient.OnPresenceUpdate += (sender, e) => { PluginLog.LogInformation("Recieved update: " + e.Name); };
             }
 
             if (!RpcClient.IsInitialized)
             {
                 // Connect to the RPC
-                RpcClient.Initialize();
+                if (!RpcClient.Initialize())
+                {
+                    PluginLog.Error("Failed to initialize Discord RPC client.");
+                }
+                else PluginLog.LogInformation("Initialised RPC client.");
             }
         }
 
