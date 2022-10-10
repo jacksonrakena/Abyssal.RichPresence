@@ -44,9 +44,11 @@
         </PackageReference>
     </ItemGroup>
 
-    <PropertyGroup>
-        <!-- <DalamudLibPath>$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath> -->
+    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('OSX'))">
         <DalamudLibPath>/Users/jackson/Library/Application Support/XIV on Mac/dalamud/Hooks/dev/</DalamudLibPath>
+    </PropertyGroup>
+    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+        <DalamudLibPath>$(appdata)\XIVLauncher\addon\Hooks\dev\</DalamudLibPath>
     </PropertyGroup>
 
     <ItemGroup>
