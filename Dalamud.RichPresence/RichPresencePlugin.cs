@@ -254,17 +254,24 @@ namespace Dalamud.RichPresence
                 var richPresenceSmallImageKey = DEFAULT_SMALL_IMAGE_KEY;
                 var richPresenceSmallImageText = LocalizationManager.Localize("DalamudRichPresenceOnline", LocalizationLanguage.Client);
 
-                // if (territoryId != 0)
-                // {
-                //     // Read territory data from generated sheet
-                //     var territory = this.Territories.First(row => row.RowId == territoryId);
-                //     territoryName = territory.PlaceName.Value?.Name ?? LocalizationManager.Localize("DalamudRichPresenceUnknown", LocalizationLanguage.Client);
-                //     territoryRegion = territory.PlaceNameRegion.Value?.Name ?? LocalizationManager.Localize("DalamudRichPresenceUnknown", LocalizationLanguage.Client);
+                if (territoryId != 0)
+                {
+                    // Read territory data from generated sheet
+                    var territory = this.Territories?.FirstOrDefault(row => row.RowId == territoryId);
+                    if (this.Territories == null || territory == null)
+                    {
+                        PluginLog.LogInformation("Failed to retrieve territory data. Will not send location data to Discord.");
+                    }
+                    else
+                    {
+                        territoryName = territory.PlaceName.Value?.Name ?? LocalizationManager.Localize("DalamudRichPresenceUnknown", LocalizationLanguage.Client);
+                        territoryRegion = territory.PlaceNameRegion.Value?.Name ?? LocalizationManager.Localize("DalamudRichPresenceUnknown", LocalizationLanguage.Client);
 
-                //     // Set large image to territory
-                //     richPresenceLargeImageText = territoryName;
-                //     richPresenceLargeImageKey = $"li_{territory.LoadingImage}";
-                // }
+                        // Set large image to territory
+                        richPresenceLargeImageText = territoryName;
+                        richPresenceLargeImageKey = $"li_{territory.LoadingImage}";
+                    }
+                }
 
                 // Show character name if configured
                 if (RichPresenceConfig.ShowName)
