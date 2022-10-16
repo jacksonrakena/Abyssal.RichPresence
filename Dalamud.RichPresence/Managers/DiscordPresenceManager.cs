@@ -30,13 +30,16 @@ namespace Dalamud.RichPresence.Managers
                 RpcClient.SkipIdenticalPresence = true;
 
                 // Set logger
-                RpcClient.Logger = new ConsoleLogger { Level = LogLevel.Warning };
+                RpcClient.Logger = new DiscordPresenceLogger();
 
-                RpcClient.OnError += (sender, e) => { PluginLog.LogInformation("RPC fail: " + e.Message); };
-                RpcClient.OnConnectionFailed += (sender, e) => { PluginLog.LogInformation("RPC connection failed on pipe " + e.FailedPipe + " - " + e.Type.ToString()); };
-                RpcClient.OnReady += (sender, e) => { PluginLog.LogInformation("RPC ready."); };
+                RpcClient.ShutdownOnly = true;
+                RpcClient.OnRpcMessage += (sender, e) => { PluginLog.LogVerbose("RPC message: " + e.Type + " at " + e.TimeCreated); };
+                RpcClient.OnConnectionEstablished += (sender, e) => { PluginLog.LogVerbose("RPC connection established. Waiting for ready signal."); };
+                RpcClient.OnError += (sender, e) => { PluginLog.LogError("RPC transmission error: " + e.Message); };
+                RpcClient.OnConnectionFailed += (sender, e) => { PluginLog.LogError("RPC connection failed on pipe " + e.FailedPipe + " - " + e.Type.ToString()); };
+                RpcClient.OnReady += (sender, e) => { PluginLog.LogInformation("RPC connected and ready to transmit."); };
                 // Subscribe to events
-                RpcClient.OnPresenceUpdate += (sender, e) => { PluginLog.LogInformation("Recieved update: " + e.Name); };
+                RpcClient.OnPresenceUpdate += (sender, e) => { PluginLog.LogVerbose("Recieved RPC update: " + e.Name); };
             }
 
             if (!RpcClient.IsInitialized)

@@ -1,7 +1,7 @@
 {
   "Author": "abyssal",
-  "Name": "Discord Rich Presence",
-  "Description": "This plugin allows you to show your zone, job, level, name, and world in your Discord status.",
+  "Name": "Patched Discord Rich Presence",
+  "Description": "[Patched for 6.21] This plugin allows you to show your zone, job, level, name, and world in your Discord status.",
   "Punchline": "Show your zone, job, level, name, and world in your Discord status",
   "InternalName": "Abyssal.RichPresence",
   "ApplicableVersion": "any",
