@@ -241,7 +241,7 @@ namespace Dalamud.RichPresence
                 var territoryRegion = LocalizationManager.Localize("DalamudRichPresenceVoid", LocalizationLanguage.Client);
 
                 // Details defaults to player name
-                var richPresenceDetails = localPlayer.Name.ToString();
+                var richPresenceDetails = localPlayer.Name.ToString() + " @ " + localPlayer.CurrentWorld.GameData.Name.ToString();
 
                 // State defaults to current world
                 var richPresenceState = localPlayer.CurrentWorld.GameData.Name.ToString();
@@ -270,7 +270,7 @@ namespace Dalamud.RichPresence
                         // Set large image to territory
                         richPresenceLargeImageText = territoryName;
                         richPresenceLargeImageKey = $"li_{territory.LoadingImage}";
-                        richPresenceState = $"{territoryName}, {localPlayer.CurrentWorld.GameData.Name.ToString()}";
+                        richPresenceState = $"{territoryName}";
                     }
                 }
 
@@ -283,7 +283,7 @@ namespace Dalamud.RichPresence
                         var fcTag = localPlayer.CompanyTag.ToString();
 
                         // Append free company tag to player name if it exists
-                        richPresenceDetails = fcTag.IsNullOrEmpty() ? richPresenceDetails : $"{richPresenceDetails} «{fcTag}»";
+                        richPresenceDetails = fcTag.IsNullOrEmpty() ? richPresenceDetails : $"{richPresenceDetails} «{fcTag}» @ {localPlayer.CurrentWorld.GameData.Name.ToString()}";
                     }
                     else if (RichPresenceConfig.ShowWorld && localPlayer.CurrentWorld.Id != localPlayer.HomeWorld.Id)
                     {
