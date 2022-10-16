@@ -283,7 +283,7 @@ namespace Dalamud.RichPresence
                         var fcTag = localPlayer.CompanyTag.ToString();
 
                         // Append free company tag to player name if it exists
-                        richPresenceDetails = fcTag.IsNullOrEmpty() ? richPresenceDetails : $"{richPresenceDetails} «{fcTag}» @ {localPlayer.CurrentWorld.GameData.Name.ToString()}";
+                        richPresenceDetails = fcTag.IsNullOrEmpty() ? richPresenceDetails : $"{localPlayer.Name.ToString()} «{fcTag}» @ {localPlayer.CurrentWorld.GameData.Name.ToString()}";
                     }
                     else if (RichPresenceConfig.ShowWorld && localPlayer.CurrentWorld.Id != localPlayer.HomeWorld.Id)
                     {
