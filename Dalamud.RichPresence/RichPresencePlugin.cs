@@ -270,6 +270,7 @@ namespace Dalamud.RichPresence
                         // Set large image to territory
                         richPresenceLargeImageText = territoryName;
                         richPresenceLargeImageKey = $"li_{territory.LoadingImage}";
+                        richPresenceState = $"{territoryName}, {localPlayer.CurrentWorld.GameData.Name.ToString()}";
                     }
                 }
 

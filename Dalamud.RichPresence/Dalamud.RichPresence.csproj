@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <AssemblyName>Dalamud.RichPresence</AssemblyName>
+        <AssemblyName>Abyssal.RichPresence</AssemblyName>
         <TargetFramework>net6.0-windows</TargetFramework>
         <PlatformTarget>x64</PlatformTarget>
         <Platforms>x64;AnyCPU</Platforms>
@@ -87,7 +87,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="Dalamud.RichPresence.json">
+        <None Include="Abyssal.RichPresence.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <None Include="$(PkgDiscordRichPresence)\lib\net35\DiscordRPC.dll">
