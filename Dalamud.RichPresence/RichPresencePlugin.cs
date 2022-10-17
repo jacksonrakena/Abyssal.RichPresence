@@ -117,7 +117,7 @@ namespace Dalamud.RichPresence
         private void SetDefaultPresence()
         {
             DiscordPresenceManager.SetPresence(DEFAULT_PRESENCE);
-            DiscordPresenceManager.UpdatePresenceDetails(LocalizationManager.Localize("DalamudRichPresenceInMenus", LocalizationLanguage.Client));
+            //DiscordPresenceManager.UpdatePresenceDetails(LocalizationManager.Localize("DalamudRichPresenceInMenus", LocalizationLanguage.Client));
             UpdateStartTime();
         }
 
@@ -130,7 +130,7 @@ namespace Dalamud.RichPresence
 
             if (RichPresenceConfig.ShowStartTime)
             {
-                DiscordPresenceManager.UpdatePresenceStartTime(startTime);
+                //DiscordPresenceManager.UpdatePresenceStartTime(startTime);
             }
         }
 
